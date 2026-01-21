@@ -27,9 +27,9 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10">
               <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-border bg-secondary">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-[hsl(262,83%,58%)]/20 flex items-center justify-center">
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-[hsl(262,83%,58%)] flex items-center justify-center text-5xl font-bold text-primary-foreground">
+                    <div className="w-32 h-32 mx-auto rounded-full bg-primary flex items-center justify-center text-5xl font-bold text-primary-foreground">
                       AF
                     </div>
                     <p className="mt-4 text-muted-foreground">Professional Photo</p>
@@ -46,8 +46,7 @@ const About = () => {
           <div>
             <span className="text-primary font-mono text-sm">About Me</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
-              Passionate about building{' '}
-              <span className="gradient-text">exceptional web experiences</span>
+              Passionate about building <span className="text-primary">exceptional web experiences</span>
             </h2>
             
             <div className="space-y-4 text-muted-foreground mb-8">

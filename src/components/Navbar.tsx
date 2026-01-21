@@ -30,7 +30,7 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="text-xl font-bold gradient-text">
+          <a href="#home" className="text-xl font-bold text-primary">
             AF
           </a>
 
