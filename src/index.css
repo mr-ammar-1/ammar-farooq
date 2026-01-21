@@ -177,6 +177,20 @@
     animation: float 6s ease-in-out infinite;
   }
 
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
   .animate-glow-pulse {
     animation: glow-pulse 3s ease-in-out infinite;
   }
@@ -188,6 +202,38 @@
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
   }
+
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .reveal-down {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  .in-view {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-down,
+  .reveal-left,
+  .reveal-right {
+    transition-duration: 1ms !important;
+    animation: none !important;
+  }
+
 
   @keyframes float {
     0%, 100% {

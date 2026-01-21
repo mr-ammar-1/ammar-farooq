@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Send, Mail, MapPin, Phone } from 'lucide-react';
+import { toast } from '@/components/ui/sonner';
+import { Send, Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
+import Reveal from '@/components/Reveal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -8,10 +10,29 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        toast.success('Message sent successfully');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        toast.error(data?.error || 'Failed to send message');
+      }
+    } catch {
+      toast.error('Network error. Please try again');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -22,26 +43,29 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding relative">
+    <section id="contact" className="section-padding relative scroll-mt-20 md:scroll-mt-24">
       {/* Background Effect */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
-          <span className="text-primary font-mono text-sm">Get In Touch</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Let's Work <span className="text-primary">Together</span>
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-          </p>
-        </div>
+        <Reveal>
+          <div className="text-center mb-16">
+            <span className="text-primary font-mono text-sm">Get In Touch</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">
+              Let's Work <span className="text-primary">Together</span>
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <div>
+          <Reveal direction="right">
+            <div>
             <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
             <p className="text-muted-foreground mb-8">
               Feel free to reach out through any of these channels. I typically respond within 24 hours.
@@ -49,43 +73,47 @@ const Contact = () => {
 
             <div className="space-y-6">
               <a
-                href="mailto:ammar@example.com"
-                className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors group"
+                href="mailto:ammarfarooq207@gmail.com"
+                className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors group"
               >
                 <div className="p-3 rounded-lg bg-secondary group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="font-medium">ammar@example.com</p>
+                  <p className="font-medium">ammarfarooq207@gmail.com</p>
                 </div>
               </a>
+        
+            
 
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card">
+              <div className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card">
                 <div className="p-3 rounded-lg bg-secondary">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="font-medium">+92 XXX XXXXXXX</p>
+                  <p className="font-medium">03259727611</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card">
+              <div className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card">
                 <div className="p-3 rounded-lg bg-secondary">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">Location</p>
-                  <p className="font-medium">Pakistan</p>
+                  <p className="font-medium">Lahore, Punjab, Pakistan</p>
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </Reveal>
 
           {/* Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <Reveal direction="left" delay={100}>
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Your Name
@@ -136,13 +164,15 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 glow-effect"
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 glow-effect disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
-                Send Message
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
-            </form>
-          </div>
+              </form>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

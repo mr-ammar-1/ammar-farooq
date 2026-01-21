@@ -1,4 +1,5 @@
-import { Download, Code2, Zap, Users } from 'lucide-react';
+import { Download, Code2, Zap, Users, Github, Linkedin, Mail } from 'lucide-react';
+import Reveal from '@/components/Reveal';
 
 const About = () => {
   const highlights = [
@@ -22,33 +23,16 @@ const About = () => {
   return (
     <section id="about" className="section-padding relative">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image Side */}
-          <div className="relative">
-            <div className="relative z-10">
-              <div className="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-border bg-secondary">
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-primary flex items-center justify-center text-5xl font-bold text-primary-foreground">
-                      AF
-                    </div>
-                    <p className="mt-4 text-muted-foreground">Professional Photo</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border border-primary/30 rounded-2xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/5 rounded-2xl -z-10" />
-          </div>
-
-          {/* Content Side */}
-          <div>
+        <div className="max-w-3xl">
+          <Reveal>
             <span className="text-primary font-mono text-sm">About Me</span>
+          </Reveal>
+          <Reveal delay={100}>
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
               Passionate about building <span className="text-primary">exceptional web experiences</span>
             </h2>
-            
+          </Reveal>
+          <Reveal delay={200}>
             <div className="space-y-4 text-muted-foreground mb-8">
               <p>
                 I'm a dedicated MERN Stack Developer with a passion for creating seamless, 
@@ -65,28 +49,50 @@ const About = () => {
                 and best practices to deliver cutting-edge solutions that exceed expectations.
               </p>
             </div>
-
-            {/* Highlights */}
-            <div className="grid sm:grid-cols-3 gap-4 mb-8">
-              {highlights.map((item, index) => (
-                <div
-                  key={index}
-                  className="p-4 rounded-xl border border-border bg-card card-hover"
-                >
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-4 mb-8">
+            {highlights.map((item, index) => (
+              <Reveal key={index} delay={index * 120}>
+                <div className="p-4 rounded-xl border border-border bg-card card-hover">
                   <item.icon className="w-8 h-8 text-primary mb-3" />
                   <h3 className="font-semibold mb-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
                 </div>
-              ))}
-            </div>
-
-            {/* Download Resume */}
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={100}>
             <a
-              href="#"
+              href="/resume/Ammar%20Farooq%20Resume.pdf"
+              download
               className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-foreground font-medium rounded-lg hover:bg-secondary/80 transition-colors"
             >
               <Download size={18} />
               Download Resume
+            </a>
+          </Reveal>
+          <div className="flex items-center gap-4 mt-6">
+            <a
+              href="https://github.com/mr-ammar-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full border border-border hover:border-primary/50 hover:text-primary transition-all duration-300"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ammar-farooq207/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full border border-border hover:border-primary/50 hover:text-primary transition-all duration-300"
+            >
+              <Linkedin size={18} />
+            </a>
+            <a
+              href="mailto:ammarfarooq207@gmail.com"
+              className="p-3 rounded-full border border-border hover:border-primary/50 hover:text-primary transition-all duration-300"
+            >
+              <Mail size={18} />
             </a>
           </div>
         </div>

@@ -1,38 +1,42 @@
 import { Briefcase, GraduationCap } from 'lucide-react';
+import Reveal from '@/components/Reveal';
 
 const experiences = [
   {
     type: 'work',
-    title: 'Full Stack Developer',
-    company: 'Tech Company',
-    period: '2023 - Present',
-    description: 'Developing and maintaining web applications using React, Node.js, and MongoDB. Leading frontend development initiatives and mentoring junior developers.',
-    highlights: ['Led migration to TypeScript', 'Improved performance by 40%', 'Implemented CI/CD pipelines'],
+    title: 'Jr. MERN Stack Developer',
+    company: 'ML Bench (Pvt) Ltd · Full-time',
+    period: 'Jun 2025 - Present · 8 mos',
+    description:
+      'Building MERN features and delivering production-grade web applications. On-site in Lahore, Punjab, Pakistan. Focus on Stripe integrations, React.js feature delivery, and backend APIs.',
+    highlights: ['Stripe integration', 'React.js components', 'Node/Express APIs', 'On-site collaboration'],
   },
   {
     type: 'work',
-    title: 'Frontend Developer',
-    company: 'Digital Agency',
-    period: '2022 - 2023',
-    description: 'Built responsive web applications for various clients using React and modern JavaScript. Collaborated with designers to implement pixel-perfect UIs.',
-    highlights: ['Delivered 15+ client projects', 'Built component library', 'Optimized SEO rankings'],
+    title: 'Web Developer',
+    company: 'PNY Trainings · Part-time',
+    period: 'Jun 2023 - Aug 2023 · 3 mos',
+    description:
+      'Developed training projects and web modules, supporting learners with practical MERN stack implementations. On-site in Lahore, Punjab, Pakistan.',
+    highlights: ['MERN practice projects', 'Responsive UI', 'Mentoring support'],
   },
   {
     type: 'work',
-    title: 'Junior Web Developer',
-    company: 'Startup',
-    period: '2021 - 2022',
-    description: 'Started my professional journey building web applications and learning best practices in software development.',
-    highlights: ['Learned MERN stack', 'Contributed to core product', 'Improved testing coverage'],
+    title: 'Software Developer',
+    company: 'Magnatec Systems Private Limited · Internship',
+    period: 'Jul 2022 - Sep 2022 · 3 mos',
+    description:
+      'Contributed to software development tasks and learned best practices in a professional environment. On-site in Lahore, Punjab, Pakistan.',
+    highlights: ['Feature prototyping', 'Bug fixes', 'Team collaboration'],
   },
 ];
 
 const education = [
   {
-    degree: "Bachelor's in Computer Science",
-    school: 'University Name',
-    period: '2017 - 2021',
-    description: 'Focused on software engineering, algorithms, and web technologies.',
+    degree: 'BS Computer Science',
+    school: 'University of Engineering and Technology, Lahore',
+    period: '2021 - 2025',
+    description: 'Computer Science program with focus on software engineering, algorithms, and web technologies.',
   },
 ];
 
@@ -40,20 +44,24 @@ const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-secondary/30 relative">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <span className="text-primary font-mono text-sm">My Journey</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Experience & <span className="text-primary">Education</span>
-          </h2>
-        </div>
+        <Reveal>
+          <div className="text-center mb-16">
+            <span className="text-primary font-mono text-sm">My Journey</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">
+              Experience & <span className="text-primary">Education</span>
+            </h2>
+          </div>
+        </Reveal>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Experience Timeline */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-8">
-              <Briefcase className="w-5 h-5 text-primary" />
-              <h3 className="text-xl font-semibold">Work Experience</h3>
-            </div>
+            <Reveal>
+              <div className="flex items-center gap-2 mb-8">
+                <Briefcase className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-semibold">Work Experience</h3>
+              </div>
+            </Reveal>
 
             <div className="relative">
               {/* Timeline Line */}
@@ -61,7 +69,8 @@ const Experience = () => {
 
               <div className="space-y-8">
                 {experiences.map((exp, index) => (
-                  <div key={index} className="relative pl-12">
+                  <Reveal key={index} delay={index * 150}>
+                    <div className="relative pl-12">
                     {/* Timeline Dot */}
                     <div className="absolute left-0 top-2 w-8 h-8 rounded-full bg-secondary border-2 border-primary flex items-center justify-center">
                       <div className="w-2 h-2 rounded-full bg-primary" />
@@ -86,7 +95,8 @@ const Experience = () => {
                         ))}
                       </div>
                     </div>
-                  </div>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -94,32 +104,38 @@ const Experience = () => {
 
           {/* Education */}
           <div>
-            <div className="flex items-center gap-2 mb-8">
-              <GraduationCap className="w-5 h-5 text-primary" />
-              <h3 className="text-xl font-semibold">Education</h3>
-            </div>
+            <Reveal>
+              <div className="flex items-center gap-2 mb-8">
+                <GraduationCap className="w-5 h-5 text-primary" />
+                <h3 className="text-xl font-semibold">Education</h3>
+              </div>
+            </Reveal>
 
             <div className="space-y-6">
               {education.map((edu, index) => (
-                <div key={index} className="p-6 rounded-xl border border-border bg-card card-hover">
-                  <span className="text-sm font-mono text-primary">{edu.period}</span>
-                  <h4 className="text-lg font-semibold mt-2">{edu.degree}</h4>
-                  <p className="text-muted-foreground">{edu.school}</p>
-                  <p className="text-sm text-muted-foreground mt-3">{edu.description}</p>
-                </div>
+                <Reveal key={index} delay={index * 120}>
+                  <div className="p-6 rounded-xl border border-border bg-card card-hover">
+                    <span className="text-sm font-mono text-primary">{edu.period}</span>
+                    <h4 className="text-lg font-semibold mt-2">{edu.degree}</h4>
+                    <p className="text-muted-foreground">{edu.school}</p>
+                    <p className="text-sm text-muted-foreground mt-3">{edu.description}</p>
+                  </div>
+                </Reveal>
               ))}
             </div>
 
             {/* Certifications or Additional Info */}
-            <div className="mt-8 p-6 rounded-xl border border-border bg-primary/5">
-              <h4 className="font-semibold mb-4">Continuous Learning</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Online courses on advanced React patterns</li>
-                <li>• AWS Cloud Practitioner certification</li>
-                <li>• Active contributor to open source projects</li>
-                <li>• Regular attendee of tech conferences</li>
-              </ul>
-            </div>
+            <Reveal delay={200}>
+              <div className="mt-8 p-6 rounded-xl border border-border bg-primary/5">
+                <h4 className="font-semibold mb-4">Continuous Learning</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Online courses on advanced React patterns</li>
+                  <li>• AWS Cloud Practitioner certification</li>
+                  <li>• Active contributor to open source projects</li>
+                  <li>• Regular attendee of tech conferences</li>
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
