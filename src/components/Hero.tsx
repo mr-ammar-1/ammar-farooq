@@ -6,7 +6,7 @@ const Hero = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-glow-pulse" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-[hsl(262,83%,58%)]/10 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
       </div>
 
       <div className="container-custom relative z-10">
@@ -19,17 +19,15 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            Hi, I'm{' '}
-            <span className="gradient-text">Ammar Farooq</span>
+            Hi, I'm <span className="text-primary">Ammar Farooq</span>
           </h1>
-
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            MERN Stack Developer
+          <p className="text-xl md:text-2xl font-semibold mb-2 animate-slide-up" style={{ animationDelay: '0.15s' }}>
+            Full Stack Developer
           </p>
 
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            I build exceptional digital experiences with modern web technologies.
-            Specializing in React, Node.js, and full-stack JavaScript development.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+            3+ years of experience building scalable web applications with React.js, Node.js, Express, and MongoDB. 
+            Passionate about creating seamless user experiences and robust backend systems.
           </p>
 
           {/* CTA Buttons */}

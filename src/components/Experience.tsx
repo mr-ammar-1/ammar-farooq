@@ -43,8 +43,7 @@ const Experience = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-mono text-sm">My Journey</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Experience &{' '}
-            <span className="gradient-text">Education</span>
+            Experience & <span className="text-primary">Education</span>
           </h2>
         </div>
 
@@ -112,7 +111,7 @@ const Experience = () => {
             </div>
 
             {/* Certifications or Additional Info */}
-            <div className="mt-8 p-6 rounded-xl border border-border bg-gradient-to-br from-primary/5 to-[hsl(262,83%,58%)]/5">
+            <div className="mt-8 p-6 rounded-xl border border-border bg-primary/5">
               <h4 className="font-semibold mb-4">Continuous Learning</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Online courses on advanced React patterns</li>

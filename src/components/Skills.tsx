@@ -57,9 +57,11 @@ const Skills = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-mono text-sm">My Skills</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Technologies I{' '}
-            <span className="gradient-text">Work With</span>
+            Skills & <span className="text-primary">Technologies</span>
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+            A comprehensive toolkit built over 3+ years of hands-on development experience
+          </p>
         </div>
 
         {/* Tech Stack Icons */}
@@ -89,7 +91,7 @@ const Skills = () => {
                     </div>
                     <div className="h-2 bg-secondary rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-primary to-[hsl(262,83%,58%)] rounded-full transition-all duration-1000"
+                        className="h-full bg-primary rounded-full transition-all duration-1000"
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>

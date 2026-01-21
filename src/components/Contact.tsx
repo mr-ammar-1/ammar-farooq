@@ -32,8 +32,7 @@ const Contact = () => {
         <div className="text-center mb-16">
           <span className="text-primary font-mono text-sm">Get In Touch</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">
-            Let's Work{' '}
-            <span className="gradient-text">Together</span>
+            Let's Work <span className="text-primary">Together</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
