@@ -76,7 +76,7 @@ const Contact = () => {
                 href="mailto:ammarfarooq207@gmail.com"
                 className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors group"
               >
-                <div className="p-3 rounded-lg bg-secondary group-hover:bg-primary/20 transition-colors">
+                <div className="p-3 rounded-lg bg-black group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div className="min-w-0">
@@ -88,7 +88,7 @@ const Contact = () => {
             
 
               <div className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card">
-                <div className="p-3 rounded-lg bg-secondary">
+                <div className="p-3 rounded-lg bg-black">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div className="min-w-0">
@@ -98,7 +98,7 @@ const Contact = () => {
               </div>
 
               <div className="flex flex-wrap items-center gap-4 p-4 rounded-xl border border-border bg-card">
-                <div className="p-3 rounded-lg bg-secondary">
+                <div className="p-3 rounded-lg bg-black">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div className="min-w-0">

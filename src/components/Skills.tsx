@@ -43,6 +43,16 @@ const techStack = [
 ];
 
 import Reveal from '@/components/Reveal';
+import { useInView } from '@/hooks/use-in-view';
+
+const AnimatedBar = ({ level }: { level: number }) => {
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
+  return (
+    <div ref={ref} className="h-2 bg-secondary rounded-full overflow-hidden">
+      <div className="h-full bg-primary rounded-full transition-all duration-1000" style={{ width: inView ? `${level}%` : '0%' }} />
+    </div>
+  );
+};
 
 const Skills = () => {
   return (
@@ -72,13 +82,12 @@ const Skills = () => {
         <Reveal delay={100}>
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {techStack.map((tech, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:border-primary/50 transition-colors"
-              >
-                <span>{tech.icon}</span>
-                <span className="font-medium">{tech.name}</span>
-              </div>
+              <Reveal key={index} delay={index * 80}>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:border-primary/50 transition-colors transition-transform duration-300 hover:scale-105">
+                  <span>{tech.icon}</span>
+                  <span className="font-medium">{tech.name}</span>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Reveal>
@@ -96,12 +105,7 @@ const Skills = () => {
                         <span className="font-medium">{skill.name}</span>
                         <span className="text-muted-foreground text-sm">{skill.level}%</span>
                       </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-primary rounded-full transition-all duration-1000"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
+                      <AnimatedBar level={skill.level} />
                     </div>
                   ))}
                 </div>

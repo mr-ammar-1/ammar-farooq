@@ -36,7 +36,7 @@ const education = [
     degree: 'BS Computer Science',
     school: 'University of Engineering and Technology, Lahore',
     period: '2021 - 2025',
-    description: 'Computer Science program with focus on software engineering, algorithms, and web technologies.',
+    description: 'Computer Science with focus on software engineering and web technologies.',
   },
 ];
 
@@ -72,7 +72,7 @@ const Experience = () => {
                   <Reveal key={index} delay={index * 150}>
                     <div className="relative pl-12">
                     {/* Timeline Dot */}
-                    <div className="absolute left-0 top-2 w-8 h-8 rounded-full bg-secondary border-2 border-primary flex items-center justify-center">
+                    <div className="absolute left-0 top-2 w-8 h-8 rounded-full bg-black border-2 border-primary flex items-center justify-center">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                     </div>
 
@@ -125,7 +125,7 @@ const Experience = () => {
             </div>
 
             {/* Certifications or Additional Info */}
-            <Reveal delay={200}>
+            {/* <Reveal delay={200}>
               <div className="mt-8 p-6 rounded-xl border border-border bg-primary/5">
                 <h4 className="font-semibold mb-4">Continuous Learning</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
@@ -135,7 +135,7 @@ const Experience = () => {
                   <li>• Regular attendee of tech conferences</li>
                 </ul>
               </div>
-            </Reveal>
+            </Reveal> */}
           </div>
         </div>
       </div>
