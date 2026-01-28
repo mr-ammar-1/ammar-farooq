@@ -73,7 +73,7 @@ const Skills = () => {
               Skills & <span className="text-primary">Technologies</span>
             </h2>
             <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-              A comprehensive toolkit built over 3+ years of hands-on development experience
+              A comprehensive toolkit built over 2+ years of hands-on development experience
             </p>
           </div>
         </Reveal>

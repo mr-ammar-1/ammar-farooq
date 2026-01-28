@@ -159,7 +159,7 @@ const Hero = () => {
                 {/* Experience badge - positioned outside image on larger screens */}
                 <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-card border border-border rounded-lg shadow-lg z-20">
                   <p className="text-[10px] sm:text-xs text-muted-foreground">Experience</p>
-                  <p className="text-base sm:text-lg font-bold text-foreground">1+ Years</p>
+                  <p className="text-base sm:text-lg font-bold text-foreground">2+ Years</p>
                 </div>
 
                 {/* Tech stack badge - hidden on very small screens */}
