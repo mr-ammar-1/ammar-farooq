@@ -35,83 +35,77 @@ const Hero = () => {
   const displayText = phrases[pIndex].slice(0, subIndex);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated background grid */}
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 lg:pt-0">
+      {/* Subtle background grid */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.4)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.4)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>
 
-      {/* Floating geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-[10%] w-72 h-72 border border-primary/20 rounded-full animate-[spin_20s_linear_infinite]" />
-        <div className="absolute top-40 left-[15%] w-48 h-48 border border-primary/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-        <div className="absolute bottom-32 right-[10%] w-64 h-64 border border-primary/15 rotate-45 animate-[spin_25s_linear_infinite]" />
-        <div className="absolute top-1/4 right-[20%] w-4 h-4 bg-primary/40 rounded-full animate-pulse" />
-        <div className="absolute top-1/3 left-[25%] w-2 h-2 bg-primary/60 rounded-full animate-ping" />
-        <div className="absolute bottom-1/4 left-[30%] w-3 h-3 bg-primary/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-glow-pulse" />
-        <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-primary/8 rounded-full blur-[80px] animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+      {/* Minimal floating elements - hidden on mobile */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
+        <div className="absolute top-32 left-[8%] w-64 h-64 border border-border rounded-full opacity-40" />
+        <div className="absolute bottom-40 right-[8%] w-48 h-48 border border-border rotate-45 opacity-30" />
+        <div className="absolute top-1/4 right-[15%] w-2 h-2 bg-foreground/20 rounded-full" />
+        <div className="absolute bottom-1/3 left-[20%] w-1.5 h-1.5 bg-foreground/30 rounded-full" />
       </div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="container-custom relative z-10 px-4 sm:px-6">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left content */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
+          <div className="order-2 lg:order-1 text-center lg:text-left w-full">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-secondary/50 backdrop-blur-sm mb-4 sm:mb-6">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-foreground opacity-50" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-foreground" />
                 </span>
-                <span className="text-sm text-primary font-medium">Open to opportunities</span>
+                <span className="text-xs sm:text-sm text-muted-foreground font-medium">Open to opportunities</span>
               </div>
             </Reveal>
 
             <Reveal delay={100}>
-              <p className="text-muted-foreground text-lg mb-2 font-mono">Hello, I'm</p>
+              <p className="text-muted-foreground text-base sm:text-lg mb-2 font-mono">Hello, I'm</p>
             </Reveal>
 
             <Reveal delay={150}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 tracking-tight">
                 Ammar <span className="text-primary">Farooq</span>
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-                <div className="h-[2px] w-8 bg-primary" />
-                <p className="text-xl sm:text-2xl font-semibold text-foreground" aria-live="polite">
-                  <span className="text-primary">{displayText}</span>
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6">
+                <div className="h-[2px] w-6 sm:w-8 bg-foreground/60" />
+                <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-foreground" aria-live="polite">
+                  {displayText}
                   <span className="typewriter-cursor" />
                 </p>
               </div>
             </Reveal>
 
             <Reveal delay={250}>
-              <p className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+              <p className="text-muted-foreground text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 mb-6 sm:mb-8 leading-relaxed">
                 Building scalable web applications with <span className="text-foreground font-medium">React</span>, <span className="text-foreground font-medium">Node.js</span>, and <span className="text-foreground font-medium">MongoDB</span>. 
-                Passionate about crafting seamless user experiences and robust systems.
+                Passionate about crafting seamless user experiences.
               </p>
             </Reveal>
 
             <Reveal delay={300}>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8">
                 <a
                   href="#projects"
-                  className="group w-full sm:w-auto px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 glow-effect flex items-center justify-center gap-2"
+                  className="group w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-foreground text-background font-medium rounded-lg hover:bg-foreground/90 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   View Projects
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="/resume/Ammar Farooq Resume.pdf"
                   download
-                  className="w-full sm:w-auto px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 border border-border text-foreground font-medium rounded-lg hover:bg-secondary transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
-                  <Download size={18} />
+                  <Download size={16} />
                   Download CV
                 </a>
               </div>
@@ -119,72 +113,61 @@ const Hero = () => {
 
             <Reveal delay={400}>
               <div className="flex items-center justify-center lg:justify-start gap-1">
-                <span className="text-muted-foreground text-sm mr-3">Connect with me</span>
+                <span className="text-muted-foreground text-xs sm:text-sm mr-2 sm:mr-3">Connect</span>
                 <a
                   href="https://github.com/mr-ammar-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-2 rounded-lg hover:bg-secondary transition-all duration-300"
                   aria-label="GitHub"
                 >
-                  <Github size={20} />
+                  <Github size={18} />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/ammar-farooq207/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-2 rounded-lg hover:bg-secondary transition-all duration-300"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin size={20} />
+                  <Linkedin size={18} />
                 </a>
                 <a
                   href="mailto:ammarfarooq207@gmail.com"
-                  className="p-2.5 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-2 rounded-lg hover:bg-secondary transition-all duration-300"
                   aria-label="Email"
                 >
-                  <Mail size={20} />
+                  <Mail size={18} />
                 </a>
               </div>
             </Reveal>
           </div>
 
-          {/* Right content - Image with decorative frame */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+          {/* Right content - Image */}
+          <div className="order-1 lg:order-2 flex justify-center">
             <Reveal delay={200}>
               <div className="relative">
-                {/* Decorative elements */}
-                <div className="absolute -inset-4 border-2 border-primary/20 rounded-2xl rotate-3 hidden sm:block" />
-                <div className="absolute -inset-4 border-2 border-primary/10 rounded-2xl -rotate-3 hidden sm:block" />
-                
                 {/* Main image container */}
-                <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[360px] lg:h-[360px] rounded-2xl overflow-hidden border-2 border-primary/30 bg-card">
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10" />
+                <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border border-border bg-card">
                   <img
                     src="/images/MyPhoto.png"
                     alt="Ammar Farooq"
                     className="w-full h-full object-cover"
                   />
-                  
-                  {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary rounded-tl-lg" />
-                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary rounded-tr-lg" />
-                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary rounded-bl-lg" />
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary rounded-br-lg" />
                 </div>
 
-                {/* Floating badge */}
-                <div className="absolute -bottom-4 -left-4 sm:-left-8 px-4 py-2 bg-card border border-border rounded-lg shadow-lg backdrop-blur-sm">
-                  <p className="text-xs text-muted-foreground">Experience</p>
-                  <p className="text-lg font-bold text-primary">1+ Years</p>
+                {/* Experience badge - positioned outside image on larger screens */}
+                <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-card border border-border rounded-lg shadow-lg z-20">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground">Experience</p>
+                  <p className="text-base sm:text-lg font-bold text-foreground">1+ Years</p>
                 </div>
 
-                {/* Tech stack floating card */}
-                <div className="absolute -top-4 -right-4 sm:-right-8 px-4 py-2 bg-card border border-border rounded-lg shadow-lg backdrop-blur-sm hidden sm:block">
-                  <p className="text-xs text-muted-foreground mb-1">Tech Stack</p>
-                  <div className="flex gap-1.5">
-                    <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded font-mono">React</span>
-                    <span className="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded font-mono">Node</span>
+                {/* Tech stack badge - hidden on very small screens */}
+                <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 lg:-top-6 lg:-right-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-card border border-border rounded-lg shadow-lg z-20 hidden sm:block">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground mb-1">Stack</p>
+                  <div className="flex gap-1">
+                    <span className="px-1.5 sm:px-2 py-0.5 bg-secondary text-foreground text-[10px] sm:text-xs rounded font-mono">React</span>
+                    <span className="px-1.5 sm:px-2 py-0.5 bg-secondary text-foreground text-[10px] sm:text-xs rounded font-mono">Node</span>
                   </div>
                 </div>
               </div>
@@ -193,12 +176,10 @@ const Hero = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group">
-            <span className="text-xs font-mono">Scroll Down</span>
-            <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1">
-              <div className="w-1.5 h-3 bg-current rounded-full animate-bounce" />
-            </div>
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 hidden sm:block">
+          <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <span className="text-xs font-mono">Scroll</span>
+            <ArrowDown size={16} className="animate-bounce" />
           </a>
         </div>
       </div>
