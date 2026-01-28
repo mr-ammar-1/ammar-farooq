@@ -55,47 +55,6 @@ PNY Trainings (Arfa Software Technology Park) – Built full-stack applications 
 Software Engineer – ML Bench (Pvt) Ltd
 Current role focusing on crafting modern software solutions and full-stack systems.
 
-🚀 Projects Highlight
-
-Your portfolio should include these featured works (add live links/screenshots):
-
-🛒 E-Commerce Platforms
-
-Full-featured online stores with authentication, payment integration, and responsive designs.
-
-📊 Restaurant Management System
-
-A system to automate operations, optimize workflows, and streamline data handling.
-
-📦 Personal Projects
-
-Shopify eCommerce templates
-
-API-driven dynamic pages
-
-Full-stack CRUD applications
-
-(Replace above with actual project names and URLs in your portfolio)
-
-📦 Installation & Local Development
-
-Follow these steps to run the portfolio locally:
-
-# Clone this repository
-git clone https://github.com/yourusername/portfolio.git
-
-# Navigate to the project
-cd portfolio
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-
-
-Open in browser:
-http://localhost:3000
 
 📝 Resume
 
