@@ -1,21 +1,53 @@
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 
 const Hero = () => {
+  const phrases = useMemo(
+  () => [
+    'Full-Stack Software Engineer',
+    'JavaScript Systems Engineer',
+    'Scalable Application Architect',
+  ],
+  []
+);
+
+  const [pIndex, setPIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = phrases[pIndex];
+    if (!deleting && subIndex === current.length) {
+      const t = setTimeout(() => setDeleting(true), 1200);
+      return () => clearTimeout(t);
+    }
+    if (deleting && subIndex === 0) {
+      setDeleting(false);
+      setPIndex((p) => (p + 1) % phrases.length);
+    }
+    const t = setTimeout(() => {
+      setSubIndex((s) => s + (deleting ? -1 : 1));
+    }, deleting ? 40 : 80);
+    return () => clearTimeout(t);
+  }, [subIndex, deleting, pIndex, phrases]);
+
+  const displayText = phrases[pIndex].slice(0, subIndex);
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] animate-glow-pulse" />
         <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-10 right-1/3 w-[350px] h-[350px] bg-primary/7 rounded-full blur-[90px] animate-glow-pulse" style={{ animationDelay: '0.8s' }} />
       </div>
 
       <div className="container-custom relative z-10 pt-16 lg:pt-0">
         <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12">
-          <div className="order-1 lg:order-1 max-w-2xl mx-auto lg:mx-0 text-left">
+          <div className="order-1 lg:order-1 max-w-2xl mx-auto lg:mx-0  text-left">
             <Reveal>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/50 backdrop-blur-sm mb-8">
+              <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-border bg-secondary/50 backdrop-blur-sm mb-8 mt-8">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-sm text-muted-foreground">Available for new opportunities</span>
+                <span className="text-xs text-muted-foreground">Available for new opportunities</span>
               </div>
             </Reveal>
 
@@ -25,8 +57,9 @@ const Hero = () => {
               </h1>
             </Reveal>
             <Reveal delay={150}>
-              <p className="text-xl md:text-2xl font-semibold mb-2">
-                Full Stack Developer
+              <p className="text-xl md:text-2xl font-semibold mb-2" aria-live="polite">
+                <span className="text-primary">{displayText}</span>
+                <span className="typewriter-cursor" />
               </p>
             </Reveal>
 
@@ -38,24 +71,25 @@ const Hero = () => {
             </Reveal>
 
             <Reveal delay={400}>
-              <div className="flex flex-col sm:flex-row items-center sm:items-start justify-start gap-4 mb-12">
-                <a
-                  href="#projects"
-                  className="px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 glow-effect"
-                >
-                  View My Work
-                </a>
-                <a
-                  href="#contact"
-                  className="px-8 py-3 border border-border text-foreground font-medium rounded-lg hover:border-primary/50 hover:bg-secondary/50 transition-all duration-300"
-                >
-                  Get In Touch
-                </a>
-              </div>
-            </Reveal>
+  <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-start gap-4 mb-12 w-full">
+    <a
+      href="#projects"
+      className="w-full lg:w-auto px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 glow-effect hover:scale-[1.03] text-center"
+    >
+      View My Work
+    </a>
+    <a
+      href="#contact"
+      className="w-full lg:w-auto px-8 py-3 border border-border text-foreground font-medium rounded-lg hover:border-primary/50 hover:bg-secondary/50 transition-all duration-300 hover:scale-[1.03] text-center"
+    >
+      Get In Touch
+    </a>
+  </div>
+</Reveal>
+
 
             <Reveal delay={500}>
-              <div className="flex items-center justify-start gap-6">
+              <div className="flex items-center justify-center md:justify-start gap-6">
                 <a
                   href="https://github.com/mr-ammar-1"
                   target="_blank"
@@ -84,7 +118,7 @@ const Hero = () => {
 
           <div className="order-2 lg:order-2 relative w-full flex justify-center">
             <Reveal delay={300}>
-              <div className="w-[90%] sm:w-[90%] md:w-[500px] max-w-full mx-auto rounded-2xl overflow-hidden mt-6">
+              <div className="w-[90%] sm:w-[90%] md:w-[500px] max-w-full mx-auto rounded-2xl overflow-hidden mt-6 animate-float">
                 <img
                   src="/images/MyPhoto.png"
                   alt="Ammar Farooq"
