@@ -1,15 +1,4 @@
-import express from 'express';
-import cors from 'cors';
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const app = express();
-const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
-
-app.use(express.json());
-app.use(cors({ origin: true }));
+import nodemailer from "nodemailer";
 
 function isSmtpConfigured() {
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
@@ -19,7 +8,7 @@ function buildTransporter() {
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 465,
-    secure: process.env.SMTP_SECURE === 'true' || true,
+    secure: process.env.SMTP_SECURE === "true",
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
@@ -27,29 +16,29 @@ function buildTransporter() {
   });
 }
 
-function escapeHtml(str) {
+function escapeHtml(str: string) {
   return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-function buildEmailHtml({ name, email, message }) {
-  const brand = 'Ammar Farooq';
-  const bg = '#FAFAFA';
-  const card = '#FFFFFF';
-  const text = '#171717';
-  const muted = '#6B7280';
-  const border = '#E5E7EB';
-  const primary = '#262626';
-  const red = '#EF4444';
-  const yellow = '#F59E0B';
+function buildEmailHtml(input: { name: string; email: string; message: string }) {
+  const brand = "Ammar Farooq";
+  const bg = "#FAFAFA";
+  const card = "#FFFFFF";
+  const text = "#171717";
+  const muted = "#6B7280";
+  const border = "#E5E7EB";
+  const primary = "#262626";
+  const red = "#EF4444";
+  const yellow = "#F59E0B";
   const grayDot = primary;
-  const safeName = escapeHtml(name);
-  const safeEmail = escapeHtml(email);
-  const safeMessage = escapeHtml(message);
+  const safeName = escapeHtml(input.name);
+  const safeEmail = escapeHtml(input.email);
+  const safeMessage = escapeHtml(input.message);
   return `
   <!doctype html>
   <html lang="en">
@@ -114,17 +103,28 @@ function buildEmailHtml({ name, email, message }) {
   `;
 }
 
-app.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body || {};
+type ContactPayload = { name: string; email: string; message: string };
+type Req = { method?: string; body?: unknown };
+type Res = { status: (code: number) => Res; json: (body: unknown) => void };
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Invalid payload' });
+export default async function handler(req: Req, res: Res) {
+  if (req.method !== "POST") {
+    res.status(405).json({ error: "Method not allowed" });
+    return;
   }
 
-  const toAddress = process.env.MAIL_TO || 'ammarfarooq207@gmail.com';
+  const { name, email, message } = (req.body as ContactPayload) || {};
+
+  if (!name || !email || !message) {
+    res.status(400).json({ error: "Invalid payload" });
+    return;
+  }
+
+  const toAddress = process.env.MAIL_TO || "ammarfarooq207@gmail.com";
 
   if (!isSmtpConfigured()) {
-    return res.status(200).json({ status: 'mock', message: 'SMTP not configured. Request logged only.' });
+    res.status(200).json({ status: "mock", message: "SMTP not configured. Request logged only." });
+    return;
   }
 
   try {
@@ -137,16 +137,8 @@ app.post('/contact', async (req, res) => {
       text: `${message}\n\nFrom: ${name} <${email}>`,
       html: buildEmailHtml({ name, email, message }),
     });
-    return res.status(200).json({ status: 'sent' });
-  } catch (err) {
-    return res.status(500).json({ error: 'Failed to send email' });
+    res.status(200).json({ status: "sent" });
+  } catch {
+    res.status(500).json({ error: "Failed to send email" });
   }
-});
-
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
-});
-
-app.listen(PORT, () => {
-  console.log(`Contact server running on http://localhost:${PORT}`);
-});
+}
