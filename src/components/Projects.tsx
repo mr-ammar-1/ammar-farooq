@@ -52,10 +52,10 @@ const Projects = () => {
         </Reveal>
 
         {/* Projects Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
           {projects.map((project, index) => (
             <Reveal key={index} delay={index * 120}>
-              <div className="group rounded-2xl border border-border bg-card overflow-hidden card-hover flex flex-col">
+              <div className="group rounded-2xl border border-border bg-card overflow-hidden card-hover flex flex-col h-full">
               {/* Project Preview - Website Embed Style */}
               <div className="relative">
                 {/* Browser Chrome */}
@@ -83,7 +83,7 @@ const Projects = () => {
               </div>
 
               {/* Project Info */}
-              <div className="p-6 md:p-8">
+              <div className="p-6 md:p-8 flex flex-col h-full">
                 <span className="inline-block px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-4">
                   {project.category}
                 </span>
@@ -111,7 +111,7 @@ const Projects = () => {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 mt-auto">
                   <Link
                     to={`/projects/details/${project.key}`}
                     className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
